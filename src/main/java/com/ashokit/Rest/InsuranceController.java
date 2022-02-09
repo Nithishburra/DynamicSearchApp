@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.tool.schema.spi.Exporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,6 @@ import com.ashokit.Binding.Response.InsuranceResponse;
 import com.ashokit.Reports.InsuranceExcelExporter;
 import com.ashokit.Reports.InsurancePdfexporter;
 import com.ashokit.service.InsuranceService;
-import com.lowagie.text.DocumentException;
 
 @RestController
 public class InsuranceController {
@@ -53,7 +51,6 @@ public class InsuranceController {
      response.setHeader(headerKey, headerValue);
      List<InsuranceResponse> plans = service.bySearch(null);
 	  InsurancePdfexporter pdfreport = new InsurancePdfexporter();
-	  //pdfreport.ExportPdf(plans);  
 	  pdfreport.ExportPdf(plans, response);
  }
 

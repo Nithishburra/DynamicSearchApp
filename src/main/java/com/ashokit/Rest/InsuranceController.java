@@ -40,19 +40,18 @@ public class InsuranceController {
 		InsuranceExcelExporter excelreport = new InsuranceExcelExporter();
 		excelreport.Export(plans, response);
 	}
-	
 
-	@GetMapping("/pdf") 
-    public void generatePDF(HttpServletResponse response) throws Exception { 
-	 response.setContentType("application/pdf"); 
-	 
-    String headerKey = "Content-Disposition"; 
-    String headerValue ="attachment; filename=Plans.pdf";
-     response.setHeader(headerKey, headerValue);
-     List<InsuranceResponse> plans = service.bySearch(null);
-	  InsurancePdfexporter pdfreport = new InsurancePdfexporter();
-	  pdfreport.ExportPdf(plans, response);
- }
+	@GetMapping("/pdf")
+	public void generatePDF(HttpServletResponse response) throws Exception {
+		response.setContentType("application/pdf");
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=Plans.pdf";
+		response.setHeader(headerKey, headerValue);
+		List<InsuranceResponse> plans = service.bySearch(null);
+		InsurancePdfexporter pdfreport = new InsurancePdfexporter();
+		pdfreport.ExportPdf(plans, response);
+	}
 
 	@PostMapping("/plans")
 	public ResponseEntity<List<InsuranceResponse>> bySearch(@RequestBody InsuranceRequest request) {
